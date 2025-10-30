@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { TranscriptEntry } from '../types';
 
 interface TranscriptionDisplayProps {
@@ -17,11 +17,12 @@ const TranscriptionDisplay: React.FC<TranscriptionDisplayProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const showWelcomeMessage = isConversationActive && history.length === 0 && !currentUserTranscript && !currentModelTranscript;
 
-  useLayoutEffect(() => {
-    if (containerRef.current) {
+  // Only scroll when new messages are added to history (completed turns)
+  useEffect(() => {
+    if (containerRef.current && history.length > 0) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-  }, [history, currentUserTranscript, currentModelTranscript]);
+  }, [history.length]); // Only depend on history length, not content changes
 
 
   return (
