@@ -33,6 +33,11 @@ The deployment will automatically trigger when you:
 
 After deployment completes (usually 2-3 minutes), your app will be available at:
 ```
+https://<your-github-username>.github.io/<your-repository-name>/
+```
+
+For this repository:
+```
 https://royalgreen65-ui.github.io/conversations-with-the-divine-/
 ```
 
@@ -75,14 +80,40 @@ For local development:
 
 ## Security Notes
 
-⚠️ **IMPORTANT**: 
-- Never commit your `.env` file to git
-- The `.env` file is now properly excluded in `.gitignore`
+⚠️ **CRITICAL SECURITY WARNING**: 
+
+**Your API key will be publicly visible in the deployed application!**
+
+When you build a client-side application with an embedded API key:
+- Anyone can view your JavaScript source code in their browser
+- Your API key will be visible to anyone who inspects the network requests or source
+- Malicious users could extract and abuse your API key
+- This could lead to unexpected charges or quota exhaustion on your Google Cloud account
+
+**Recommended Production Security Measures:**
+1. **API Key Restrictions**: In Google Cloud Console, restrict your API key to:
+   - Specific HTTP referrers (your GitHub Pages domain)
+   - Specific APIs (only Gemini API)
+   - Set usage quotas to prevent abuse
+
+2. **Backend Proxy (Recommended)**: For production applications, implement a backend server that:
+   - Keeps the API key secret on the server
+   - Validates and rate-limits requests
+   - Proxies calls to the Gemini API
+   - Adds authentication for your users
+
+3. **Monitoring**: Regularly check your API usage in Google AI Studio to detect any unusual activity
+
+**For Development/Demo Purposes Only**: This client-side deployment pattern is suitable for:
+- Personal projects and demos
+- Learning and experimentation
+- Prototypes and proof-of-concepts
+- Applications with proper API key restrictions set
+
+⚠️ **Remember**: 
+- Never commit your `.env` file to git (now properly excluded in `.gitignore`)
 - The API key in your deployed app is embedded during build time from GitHub Secrets
-- Users who inspect your deployed JavaScript can see the embedded API key, so consider:
-  - Using API key restrictions in Google Cloud Console
-  - Implementing rate limiting
-  - Setting up a backend proxy for production use
+- Consider the security implications before sharing your deployed app publicly
 
 ## Next Steps
 
