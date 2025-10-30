@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { TranscriptEntry } from '../types';
 
 interface TranscriptionDisplayProps {
@@ -14,10 +14,21 @@ const TranscriptionDisplay: React.FC<TranscriptionDisplayProps> = ({
   currentModelTranscript,
   isConversationActive,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const showWelcomeMessage = isConversationActive && history.length === 0 && !currentUserTranscript && !currentModelTranscript;
 
+  useLayoutEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [history, currentUserTranscript, currentModelTranscript]);
+
+
   return (
-    <div className="w-full max-w-4xl h-full flex flex-col space-y-4 p-4 text-white overflow-y-auto">
+    <div
+      ref={containerRef}
+      className="w-full max-w-4xl h-full flex flex-col space-y-4 p-4 text-white overflow-y-auto"
+    >
       {showWelcomeMessage && (
         <div className="flex-grow flex flex-col items-center justify-center text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-yellow-200/50 mb-4 animate-pulse">

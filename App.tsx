@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { GoogleGenAI, LiveServerMessage, Modality, LiveSession } from "@google/genai";
+import { GoogleGenAI, LiveServerMessage, Modality } from "@google/genai";
 import { ConversationState, TranscriptEntry } from './types';
 import { encode, decode, decodeAudioData } from './utils/audio';
 import StatusIndicator from './components/StatusIndicator';
@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const [currentUserTranscript, setCurrentUserTranscript] = useState('');
   const [currentModelTranscript, setCurrentModelTranscript] = useState('');
 
-  const sessionPromiseRef = useRef<Promise<LiveSession> | null>(null);
+  const sessionPromiseRef = useRef<Promise<any> | null>(null);
   const inputAudioContextRef = useRef<AudioContext | null>(null);
   const outputAudioContextRef = useRef<AudioContext | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -205,8 +205,8 @@ const App: React.FC = () => {
   const isConversationActive = conversationState === ConversationState.CONNECTED || conversationState === ConversationState.CONNECTING;
 
   return (
-    <main className="bg-[#0c0c1c] text-white w-screen h-screen flex flex-col items-center justify-center overflow-hidden"
-          style={{ backgroundImage: 'url(https://picsum.photos/seed/divine/1920/1080)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <main className="bg-[#0c0c1c] text-white w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-cover bg-center"
+          style={{ backgroundImage: 'url(https://picsum.photos/seed/divine/1920/1080)' }}>
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
       <div className="relative z-10 w-full h-full flex flex-col items-center p-4 md:p-8">
         <header className="w-full max-w-4xl text-center mb-4">
