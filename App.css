@@ -1,0 +1,160 @@
+/* Main application styles */
+.app-main {
+  background-color: #0c0c1c;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url('https://picsum.photos/seed/divine/1920/1080');
+  background-size: cover;
+  background-position: center;
+}
+
+.app-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.app-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    padding: 2rem;
+  }
+}
+
+.app-header {
+  width: 100%;
+  max-width: 64rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.app-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  font-family: serif;
+  letter-spacing: 0.1em;
+  color: #fef3c7;
+}
+
+@media (min-width: 768px) {
+  .app-title {
+    font-size: 3.75rem;
+  }
+}
+
+.app-subtitle {
+  color: #d1d5db;
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.app-content {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 64rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 6rem;
+  overflow: hidden;
+}
+
+.app-error {
+  position: absolute;
+  bottom: 7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(127, 29, 29, 0.8);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  max-width: 28rem;
+}
+
+.app-error-title {
+  font-weight: bold;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, #0c0c1c, transparent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-button {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  border: none;
+  cursor: pointer;
+}
+
+.app-button:active {
+  transform: scale(0.95);
+}
+
+.app-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.app-button--stop {
+  background-color: #dc2626;
+  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.5);
+}
+
+.app-button--stop:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+.app-button--start {
+  background-color: #2563eb;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
+}
+
+.app-button--start:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.app-button-icon {
+  color: white;
+}
