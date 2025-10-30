@@ -221,6 +221,7 @@ const App: React.FC = () => {
             history={transcriptHistory}
             currentUserTranscript={currentUserTranscript}
             currentModelTranscript={currentModelTranscript}
+            isConversationActive={isConversationActive}
           />
         </div>
 
