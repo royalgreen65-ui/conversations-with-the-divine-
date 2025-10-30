@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { TranscriptEntry } from '../types';
 
 interface TranscriptionDisplayProps {
@@ -18,10 +18,10 @@ const TranscriptionDisplay: React.FC<TranscriptionDisplayProps> = ({
   const showWelcomeMessage = isConversationActive && history.length === 0 && !currentUserTranscript && !currentModelTranscript;
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     scrollToBottom();
   }, [history, currentUserTranscript, currentModelTranscript]);
 
