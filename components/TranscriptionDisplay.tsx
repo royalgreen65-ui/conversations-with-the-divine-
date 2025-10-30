@@ -14,20 +14,19 @@ const TranscriptionDisplay: React.FC<TranscriptionDisplayProps> = ({
   currentModelTranscript,
   isConversationActive,
 }) => {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const showWelcomeMessage = isConversationActive && history.length === 0 && !currentUserTranscript && !currentModelTranscript;
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
-  };
-
   useLayoutEffect(() => {
-    scrollToBottom();
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
   }, [history, currentUserTranscript, currentModelTranscript]);
 
 
   return (
     <div
+      ref={containerRef}
       className="w-full max-w-4xl h-full flex flex-col space-y-4 p-4 text-white overflow-y-auto"
     >
       {showWelcomeMessage && (
@@ -77,7 +76,6 @@ const TranscriptionDisplay: React.FC<TranscriptionDisplayProps> = ({
             )}
         </div>
       )}
-      <div ref={messagesEndRef} />
     </div>
   );
 };
