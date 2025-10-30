@@ -14,21 +14,21 @@ const TranscriptionDisplay: React.FC<TranscriptionDisplayProps> = ({
   currentModelTranscript,
   isConversationActive,
 }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const showWelcomeMessage = isConversationActive && history.length === 0 && !currentUserTranscript && !currentModelTranscript;
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   useEffect(() => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
-    }
+    scrollToBottom();
   }, [history, currentUserTranscript, currentModelTranscript]);
 
 
   return (
     <div
-      ref={scrollContainerRef}
       className="w-full max-w-4xl h-full flex flex-col space-y-4 p-4 text-white overflow-y-auto"
-      style={{ scrollBehavior: 'smooth' }}
     >
       {showWelcomeMessage && (
         <div className="flex-grow flex flex-col items-center justify-center text-center">
@@ -77,6 +77,7 @@ const TranscriptionDisplay: React.FC<TranscriptionDisplayProps> = ({
             )}
         </div>
       )}
+      <div ref={messagesEndRef} />
     </div>
   );
 };
