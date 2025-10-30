@@ -1,0 +1,7 @@
+{
+  "name": "Conversations with the Divine",
+  "description": "An interactive web application that allows users to have a real-time audio conversation with an AI role-playing as the God of the bible, powered by the Gemini 2.5 Native Audio (Live) API.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
