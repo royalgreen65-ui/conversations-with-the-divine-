@@ -4,6 +4,7 @@ import { ConversationState, TranscriptEntry } from './types';
 import { encode, decode, decodeAudioData } from './utils/audio';
 import StatusIndicator from './components/StatusIndicator';
 import TranscriptionDisplay from './components/TranscriptionDisplay';
+import './App.css';
 
 const App: React.FC = () => {
   const [conversationState, setConversationState] = useState<ConversationState>(ConversationState.IDLE);
@@ -205,8 +206,8 @@ const App: React.FC = () => {
   const isConversationActive = conversationState === ConversationState.CONNECTED || conversationState === ConversationState.CONNECTING;
 
   return (
-    <main className="bg-[#0c0c1c] text-white w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-cover bg-center"
-          style={{ backgroundImage: 'url(https://picsum.photos/seed/divine/1920/1080)' }}>
+    <main 
+      className="bg-[#0c0c1c] text-white w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-cover bg-center divine-background">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
       <div className="relative z-10 w-full h-full flex flex-col items-center p-4 md:p-8">
         <header className="w-full max-w-4xl text-center mb-4">
